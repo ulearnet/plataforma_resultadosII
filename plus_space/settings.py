@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'plus_space.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_reim',
+        'NAME': 'ulearnet_reim_pilotaje',
         'USER': 'masterulearnet',
         'PASSWORD': 'Ulearnet2021.',
         'HOST': 'ulearnet-db.cmfamk37bb89.sa-east-1.rds.amazonaws.com',
