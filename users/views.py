@@ -83,10 +83,10 @@ def welcome(request):
         activate_reim_filter = False
         if request.GET.get('reim') and request.GET.get('reim') != "0":
             activate_reim_filter = True
-            reim_filter = ' AND reim_id=' + request.GET.get('reim')
+            reim_filter = ' AND actividadxreim.id_reim=' + request.GET.get('reim')
 
         cursor.execute(
-            'SELECT DISTINCT actividad.id, actividad.nombre from asigna_reim inner join actividad on reim_id = reim_id inner join pertenece on asigna_reim.colegio_id = pertenece.colegio_id  inner join colegio on asigna_reim.colegio_id = colegio.id inner join nivel on asigna_reim.nivel_id = nivel.id inner join letra on asigna_reim.letra_id = letra.id inner join usuario on pertenece.usuario_id = usuario.id where usuario.username ="'
+            'SELECT DISTINCT actividadxreim.id_actividad, actividad.nombre from actividad, actividadxreim, asigna_reim, pertenece, usuario, colegio, nivel, letra where actividad.id=actividadxreim.id_actividad and pertenece.usuario_id=usuario.id and asigna_reim.colegio_id=pertenece.colegio_id and asigna_reim.colegio_id=colegio.id and asigna_reim.nivel_id=nivel.id and asigna_reim.letra_id=letra.id and reim_id = reim_id and usuario.username ="'
             + request.user.username + '"' + reim_filter +
             ' GROUP BY actividad.id')
         activities = cursor.fetchall()
